@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
 
-function App() {
+import ImageContext from "./context/ImageContext";
+
+import Image from "./components/Image";
+
+export default function App() {
+  const [imageURL, setImageURL] = useState("https://rickandmortyapi.com/api/character/avatar/321.jpe")
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <ImageContext.Provider value={imageURL}>
+      <div className="App">
+        <h1>Hello CodeSandbox</h1>
+        <h2>Start editing to see some magic happen!</h2>
+        <Image
+          alt="Hola mundo"
+        />
+      </div>
+    </ImageContext.Provider>
+    <button
+      onClick={() => {
+        setImageURL("https://rickandmortyapi.com/api/character/avatar/321.jpeg");
+      }}
+      >
+      Recargar Imagen
+    </button>
+    </>
   );
-}
-
-export default App;
+};
